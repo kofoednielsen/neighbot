@@ -13,11 +13,11 @@ clean:
 # ░▀▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀
 
 docker-build:
-	docker build . -t sms-noise-bot
+	docker build . -t neighbot
 
 docker-run: docker-build
 	docker run --rm -i -t \
 		-p 8080:80\
-		--name="sms-noise-bot"\
+		--name="neighbot"\
 		--env-file ./.env\
-		sms-noise-bot
+		neighbot
