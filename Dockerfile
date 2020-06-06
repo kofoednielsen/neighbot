@@ -11,7 +11,8 @@ WORKDIR /tmp/deps
 RUN pipenv install --deploy --system
 
 
-COPY ./bot /bot
-WORKDIR /bot
-CMD python bot.py
+COPY ./neighbot /app
+WORKDIR /app
 
+# -k argument fixes Quart problem
+CMD hypercorn --bind 0.0.0.0:80 bot:app
