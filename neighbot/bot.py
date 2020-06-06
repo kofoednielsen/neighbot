@@ -34,13 +34,14 @@ async def on_ready():
 @app.route("/sms", methods=['GET'])
 def sms_received():
     text = request.args.get('Body')
-    logger.info(f'Received message "{text}", now sending it to discord')
+    sender = request.args.get('From')
+    logger.info(f'Received message "{text}" from {sender}, now sending it to discord')
     for guild in client.guilds:
         logger.info(f'client is in guild "{guild.name}"')
         for channel in guild.channels:
             if type(channel) is discord.TextChannel:
                 logger.info(f'Send message to channel "{channel.name}"')
-                asyncio.run_coroutine_threadsafe(channel.send(text), client.loop)
+                asyncio.run_coroutine_threadsafe(channel.send(f'{sender}> {text}'), client.loop)
     return 'thank you', 200
 
 
