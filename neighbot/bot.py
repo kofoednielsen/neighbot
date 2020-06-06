@@ -31,9 +31,9 @@ async def on_ready():
     logger.info(f'{client.user} has connected to Discord!')
 
 
-@app.route("/sms", methods=['POST'])
+@app.route("/sms", methods=['GET'])
 def sms_received():
-    text = request.args.get('body')
+    text = list(filter(lambda t: 'Body' in t, request.form['ToCountry'].split('&')))[0].split('=')[1]
     logger.info(f'Received message "{text}", now sending it to discord')
     for guild in client.guilds:
         logger.info(f'client is in guild "{guild.name}"')
