@@ -33,7 +33,7 @@ async def on_ready():
 
 @app.route("/sms", methods=['GET'])
 def sms_received():
-    text = list(filter(lambda t: 'Body' in t, request.form['ToCountry'].split('&')))[0].split('=')[1]
+    text = list(filter(lambda t: 'Body' in t, request.data.decode('utf8').split('&')))[0].split('=')[1]
     logger.info(f'Received message "{text}", now sending it to discord')
     for guild in client.guilds:
         logger.info(f'client is in guild "{guild.name}"')
