@@ -37,10 +37,8 @@ def sms_received():
     sender = request.args.get('From')
     logger.info(f'Received message "{text}" from {sender}, now sending it to discord')
     for guild in client.guilds:
-        logger.info(f'client is in guild "{guild.name}"')
         for channel in guild.channels:
-            if type(channel) is discord.TextChannel:
-                logger.info(f'Send message to channel "{channel.name}"')
+            if type(channel) is discord.TextChannel and channel.name == "neighbot":
                 asyncio.run_coroutine_threadsafe(channel.send(f'**{sender}** {text}'), client.loop)
     return 'thank you', 200
 
