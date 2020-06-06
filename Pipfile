@@ -8,8 +8,8 @@ verify_ssl = true
 [packages]
 "discord.py" = "*"
 loguru = "*"
-quart = "*"
-hypercorn = "*"
+flask = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

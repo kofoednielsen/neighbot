@@ -15,4 +15,4 @@ COPY ./neighbot /app
 WORKDIR /app
 
 # -k argument fixes Quart problem
-CMD hypercorn --bind 0.0.0.0:80 bot:app
+CMD gunicorn --bind 0.0.0.0:80 bot:app
