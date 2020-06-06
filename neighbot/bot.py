@@ -41,7 +41,7 @@ def sms_received():
         for channel in guild.channels:
             if type(channel) is discord.TextChannel:
                 logger.info(f'Send message to channel "{channel.name}"')
-                asyncio.run_coroutine_threadsafe(channel.send(f'{sender}> {text}'), client.loop)
+                asyncio.run_coroutine_threadsafe(channel.send(f'**{sender}** {text}'), client.loop)
     return 'thank you', 200
 
 
