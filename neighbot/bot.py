@@ -42,9 +42,15 @@ async def sms_received():
     return "thank you", 200
 
 
-if __name__ == "__main__":
+async def main():
     config = Config()
     config.bind = ["0.0.0.0:80"]
     # Start hypercorn and discord bot
-    asyncio.run(asyncio.gather(serve(app, config),
-                               bot.start(ENV["DISCORD_TOKEN"])))
+    await asyncio.gather(
+        serve(app, config),
+        bot.start(ENV["DISCORD_TOKEN"])
+    )
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
