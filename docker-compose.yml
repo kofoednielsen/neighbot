@@ -20,6 +20,7 @@ services:
   discord-bot:
     build:
       context: ./discord-bot
+    env_file: ./.env
 
   discord-parser:
     build:
