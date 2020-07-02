@@ -23,6 +23,8 @@ def send_to_discord(ch, method, properties, body_bytes):                   #    
             if type(channel) is discord.TextChannel and channel.name == "debug":
                 asyncio.run_coroutine_threadsafe(channel.send(body), client.loop)
                 return
+            else:
+                logger.debug(f"FUCK ITS NOT THIS CHANNEL {channel.name} FUCK")
     logger.error("DIDNT FIND DISCROD CHANELLES FUCK ")
                                                                            #      \___)=(___/
 
