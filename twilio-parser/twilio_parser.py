@@ -19,5 +19,5 @@ def twilio_parse(hocus, pocus, cats, args_bytes: bytes):
                           body=body)
 
 
-channel.basic_consume("twilio-parse", twilio_parse)
+channel.basic_consume("twilio-parse", twilio_parse, auto_ack=True)
 channel.start_consuming()
