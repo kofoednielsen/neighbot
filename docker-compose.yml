@@ -24,6 +24,8 @@ services:
   http-receiver:
     build: ./http-receiver
     restart: always
+    ports: 
+      - "8080:80"
   twilio-parser:
     build: ./twilio-parser
     restart: always
