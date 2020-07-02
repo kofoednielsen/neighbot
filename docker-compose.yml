@@ -16,9 +16,13 @@ services:
       - "15672:15672"  # management port
   discord-bot:
     build: ./discord-bot
+    restart: always
   discord-parser:
     build: ./discord-parser
+    restart: always
   http-receiver:
     build: ./http-receiver
+    restart: always
   twilio-parser:
     build: ./twilio-parser
+    restart: always
