@@ -26,6 +26,8 @@ def send_to_discord(ch, method, properties, body):
 
 if __name__ == "__main__":
     channel.basic_consume(
-        queue="discordbot", on_message_callback=send_to_discord, auto_ack=True
+        queue="discordbot",
+        on_message_callback=send_to_discord,
+        auto_ack=True
     )
     channel.start_consuming()
