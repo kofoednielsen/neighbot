@@ -12,7 +12,9 @@ channel.queue_declare(queue="discordbot")                                  #   -
 # discord shit                         #  ░█▀▄░█░█░█░█░█▀▀                 #      \
 bot = discord.Client()                 #  ░▀▀░░▀▀▀░▀▀▀░▀░░                 #          .--.
                                                                            #         |o_o |
-def send_to_discord(ch, method, properties, body):                         #         |:_/ |
+def send_to_discord(ch, method, properties, body_bytes):                   #         |:_/ |
+    # decode body
+    body = body_bytes.decode("utf-8")
     # forward message to discord channel                                   #        //   \ \
     print(f"Sending to discord: {body}")                                   #       (|     | )
     bot.get_channel(environ["CHANNEL_ID"]).send(body)                      #      /'\_   _/`\

@@ -1,5 +1,6 @@
 from flask import Flask, request
 from loguru import logger
+import json
 import pika
 
 
@@ -17,5 +18,5 @@ def sms():
     logger.info('Received sms and published twilio-parse job')
     channel.basic_publish(exchange="",
                           routing_key="twilio-parse",
-                          body=request.args)
+                          body=json.dumps(request.args).encode("utf-8"))
     return "thank you", 200
