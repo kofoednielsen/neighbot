@@ -1,6 +1,4 @@
 version: "3"
-
-
 services:
   amqp:
     # Normally, we expect the `rabbitmq` image. The -management images come
@@ -16,19 +14,11 @@ services:
     ports:
       - "5672:5672"    # amqp port
       - "15672:15672"  # management port
-
   discord-bot:
-    build:
-      context: ./discord-bot
-
+    build: ./discord-bot
   discord-parser:
-    build:
-      context: ./discord-parser
-
+    build: ./discord-parser
   http-receiver:
-    build:
-      context: ./http-receiver
-
+    build: ./http-receiver
   twilio-parser:
-    build:
-      context: ./twilio-parser
+    build: ./twilio-parser
