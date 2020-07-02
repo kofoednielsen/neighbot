@@ -1,3 +1,4 @@
+from loguru import logger
 import pika
 
 
@@ -7,6 +8,7 @@ channel.queue_declare(queue="discord-parse")
 
 
 def twilio_parse(args):
+    logger.info("Parsed twilio-parse job and published discord-parse job")
     sms_message = args['Body']
     sender = args['From']
     channel.basic_publish(exchange="",
