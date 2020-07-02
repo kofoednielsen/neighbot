@@ -1,3 +1,4 @@
+from loguru import logger
 import pika
 
 
@@ -7,6 +8,7 @@ channel.queue_declare(queue="discord-bot")
 
 
 def discord_parse(needed_stuff):
+    logger.info("Parsed discord-parse message and published discord-bot job")
     channel.basic_publish(exchange="",
                           routing_key="discord-parse",
                           body=f"**{needed_stuff[0]}** {needed_stuff[1]}")
