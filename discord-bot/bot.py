@@ -1,5 +1,6 @@
 import discord  # type: ignore                   
 import pika  # type: ignore                      # ░█▀▀░█▀█░▀█▀░█▀▄░█▀█
+import asyncio
 from loguru import logger # type: ignore         # ░█▀▀░█░█░░█░░█▀▄░█▀▀
 from os import getenv                            # ░▀░░░▀░▀░▀▀▀░▀░▀░▀░░
 from threading import Thread                     
@@ -17,7 +18,12 @@ def send_to_discord(ch, method, properties, body_bytes):                   #    
     body = body_bytes.decode("utf-8")
     # forward message to discord channel                                   #        //   \ \
     print(f"Sending to discord: {body}")                                   #       (|     | )
-    bot.get_channel(getenv("CHANNEL_ID")).send(body)                      #      /'\_   _/`\
+    for guild in bot.guilds:
+        for channel in guild.channels:
+            if type(channel) is discord.TextChannel and channel.id == getenv("CHANNEL_ID"):
+                asyncio.run_coroutine_threadsafe(channel.send(body), client.loop)
+                return
+    logger.error("DIDNT FIND DISCROD CHANELLES FUCK ")
                                                                            #      \___)=(___/
 
 def start_consumer():
