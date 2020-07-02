@@ -7,7 +7,7 @@ channel = connection.channel()
 channel.queue_declare(queue="discord-parse")
 
 
-def twilio_parse(args):
+def twilio_parse(hocus, pocus, cats, args):
     logger.info("Parsed twilio-parse job and published discord-parse job")
     sms_message = args['Body']
     sender = args['From']
