@@ -1,5 +1,4 @@
 import discord  # type: ignore
-import rabbitmq  # type: ignore
 import pika  # type: ignore
 import loguru  # type: ignore
 from os import environ
