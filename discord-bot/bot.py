@@ -20,7 +20,7 @@ def send_to_discord(ch, method, properties, body_bytes):                   #    
     print(f"Sending to discord: {body}")                                   #       (|     | )
     for guild in bot.guilds:
         for channel in guild.channels:
-            if type(channel) is discord.TextChannel and channel.id == getenv("CHANNEL_ID"):
+            if type(channel) is discord.TextChannel and channel.name == "debug":
                 asyncio.run_coroutine_threadsafe(channel.send(body), client.loop)
                 return
     logger.error("DIDNT FIND DISCROD CHANELLES FUCK ")
